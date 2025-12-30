@@ -8,11 +8,10 @@ import os
 # -------------------------------
 n_users = 1000
 n_days = 30
-np.random.seed(42)  # For reproducibility
+np.random.seed(42)  # Reproducibility
 
-# Output directory
 OUTPUT_DIR = r"C:\Users\mithr\Documents"
-OUTPUT_FILE = os.path.join(OUTPUT_DIR, "user_engagement.csv")
+OUTPUT_FILE = os.path.join(OUTPUT_DIR, "user_engagement_raw.csv")
 
 # -------------------------------
 # Generate users
@@ -27,11 +26,28 @@ start_date = datetime(2025, 12, 1)
 
 for day in range(n_days):
     current_date = start_date + timedelta(days=day)
-    for user in users:
-        sessions = np.random.poisson(1)        # Avg 1 session/day
-        pages = np.random.randint(1, 10)       # Pages visited
-        time_spent = np.random.randint(30, 600)  # Seconds
-        churn = np.random.choice([0, 1], p=[0.9, 0.1])
+
+    # Simulate fluctuating Daily Active Users (DAU)
+    daily_active_count = np.random.randint(600, 1000)
+
+    # Weekend dip (optional but realistic)
+    if current_date.weekday() >= 5:  # Saturday / Sunday
+        daily_active_count = np.random.randint(500, 800)
+
+    active_today = np.random.choice(
+        users,
+        size=daily_active_count,
+        replace=False
+    )
+
+    for user in active_today:
+        sessions = np.random.poisson(1)
+        pages = np.random.randint(1, 10)
+        time_spent = np.random.randint(30, 600)
+
+        # Churn probability based on engagement
+        churn_prob = 0.15 if sessions == 0 else 0.05
+        churn_flag = np.random.choice([0, 1], p=[1 - churn_prob, churn_prob])
 
         data.append([
             user,
@@ -39,7 +55,7 @@ for day in range(n_days):
             sessions,
             pages,
             time_spent,
-            churn
+            churn_flag
         ])
 
 # -------------------------------
@@ -62,5 +78,7 @@ df = pd.DataFrame(
 # -------------------------------
 df.to_csv(OUTPUT_FILE, index=False)
 
-print(f"Dataset generated successfully at: {OUTPUT_FILE}")
+print("Dataset generated successfully!")
+print(f"File path: {OUTPUT_FILE}")
 print(f"Total rows: {len(df)}")
+print(f"Date range: {df['date'].min()} → {df['date'].max()}")
