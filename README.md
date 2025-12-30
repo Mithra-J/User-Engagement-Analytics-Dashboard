@@ -10,8 +10,11 @@ Track key engagement metrics with an automated analytics pipeline:
 - **Behavioral Metrics** (page views, time spent)
 - **Churn Intelligence** & retention tracking
 
+---
+
 ## 📁 Project Structure
 
+```
 User-Engagement-Analytics-Dashboard/
 │
 ├── data/
@@ -23,10 +26,13 @@ User-Engagement-Analytics-Dashboard/
 ├── clean_dataset.py                  # Data cleaning pipeline
 ├── aggregate_dataset.py              # Metrics computation
 └── README.md
+```
 
+---
 
 ## ⚡ Quick Start
 
+```bash
 # 1. Generate synthetic data (1,000 users × 30 days)
 python generate_dataset.py
 
@@ -37,27 +43,34 @@ python clean_dataset.py
 python aggregate_dataset.py
 
 # 4. Load data/user_engagement_metrics.csv into Power BI
+```
+
+---
 
 ## 🛠 Tech Stack
+
 - Python, Pandas
 - Power BI
 - CSV-based ETL pipeline
 
+---
 
 ## 📈 Dashboard Features
 
-- **📉 Trend Analysis** - DAU and session patterns over time
-- **📊 Engagement Metrics** - Average pages visited and time spent
-- **🎯 Churn Tracking** - Daily retention indicators
-- **🔍 Interactive Filters** - Date range slicers
+- **📉 Trend Analysis** – DAU and session patterns over time
+- **📊 Engagement Metrics** – Average pages visited and time spent
+- **🎯 Churn Tracking** – Daily retention indicators
+- **🔍 Interactive Filters** – Date range slicers
+
+---
 
 ## 💡 Key Features
 
 ✅ Complete ETL pipeline from raw data to insights  
 ✅ Reproducible workflow with modular scripts  
 ✅ Production-quality code structure  
-✅ Easy to adapt for real business data
+✅ Easy to adapt for real business data  
 
 ---
 
-**⭐ Star this repo if you found it helpful!**
+⭐ **Star this repo if you found it helpful!**
