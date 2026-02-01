@@ -25,6 +25,7 @@ User-Engagement-Analytics-Dashboard/
 ├── generate_dataset.py               # Creates synthetic data
 ├── clean_dataset.py                  # Data cleaning pipeline
 ├── aggregate_dataset.py              # Metrics computation
+├── user_analytics_dashboard.pbix     # User Engagement Analytics Dashboard (Power BI)
 └── README.md
 ```
 
